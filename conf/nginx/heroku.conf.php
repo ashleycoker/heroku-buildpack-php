@@ -18,8 +18,17 @@ http {
 
     # AC COMMENTED: fastcgi_buffers 256 4k;
     # AC ADDED 2 lines to fix "upstream sent too big header while reading response header from upstream":
-    fastcgi_buffers 16 16k;
-    fastcgi_buffer_size 32k;
+    # fastcgi_buffers 16 16k;
+    # fastcgi_buffer_size 32k;
+
+    # AC ADDED 6 lines to fix "504 Gateway Timeout Error" during running long translation orders
+    client_header_timeout 3000;
+    client_body_timeout 3000;
+    fastcgi_read_timeout 3000;
+    client_max_body_size 32m;
+    fastcgi_buffers 8 128k;
+    fastcgi_buffer_size 128k;
+
 
     # define an easy to reference name that can be used in fastgi_pass
     upstream heroku-fcgi {

@@ -2,7 +2,8 @@
 #user  nobody;
 worker_processes  auto;
 
-error_log  stderr;
+#error_log  stderr;
+error_log /tmp/heroku.php-fpm.www.5000.log;
 #error_log  logs/error.log  notice;
 #error_log  logs/error.log  info;
 

@@ -57,7 +57,10 @@ http {
         # restrict access to hidden files, just in case
         location ~ /\. {
             #deny all;
+            # try to serve file directly, fallback to rewrite
+            try_files $uri @rewriteapp;
         }
+
         
         # default handling of .php
         location ~ \.php {
@@ -306,9 +309,6 @@ http {
             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
             # try_files resets $fastcgi_path_info, see http://trac.nginx.org/nginx/ticket/321, so we use the if instead
             fastcgi_param PATH_INFO $fastcgi_path_info if_not_empty;
-            
-            # try to serve file directly, fallback to rewrite
-            try_files $uri @rewriteapp;
             
             if (!-f $document_root$fastcgi_script_name) {
                 # check if the script exists

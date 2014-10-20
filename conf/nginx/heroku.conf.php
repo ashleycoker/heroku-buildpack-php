@@ -57,8 +57,6 @@ http {
         # restrict access to hidden files, just in case
         location ~ /\. {
             #deny all;
-            # try to serve file directly, fallback to rewrite
-            try_files $uri @rewriteapp;
         }
 
         

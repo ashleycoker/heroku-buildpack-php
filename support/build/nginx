@@ -25,6 +25,7 @@ ETC=${OUT_PREFIX}/etc
 VAR=${OUT_PREFIX}/var
 ./configure \
     --prefix=${OUT_PREFIX} \
+    --add-module=headers-more-nginx-module
     --conf-path=${ETC}/nginx/nginx.conf \
     --pid-path=${VAR}/run/nginx.pid \
     --lock-path=${VAR}/run/nginx.lock \

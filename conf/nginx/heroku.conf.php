@@ -43,6 +43,11 @@ http {
         # TODO: use X-Forwarded-Host? http://comments.gmane.org/gmane.comp.web.nginx.english/2170
         server_name localhost;
         listen <?=getenv('PORT')?:'8080'?>;
+        
+        ssl on;
+        ssl_certificate /etc/nginx/ssl/nginx.crt;
+        ssl_certificate_key /etc/nginx/ssl/nginx.key;
+        
         # FIXME: breaks redirects with foreman
         port_in_redirect off;
         
